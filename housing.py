@@ -58,19 +58,19 @@ def get_user_input(data):
 
 	### latitude - slider with min, max, and mean
 	data_latitude = data['latitude']
-	latitude = st.sidebar.slider('Latitude', data_latitude.min(), data_latitude.max(), data_latitude.mean())
+	latitude = st.sidebar.slider('Latitude', float(data_latitude.min()), float(data_latitude.max()), float(data_latitude.mean()))
 
 	### housing_median_age - slider with min, max, and mean
 	data_median_age = data['housing_median_age']
-	housing_median_age = st.sidebar.slider('Housing Median Age', data_median_age.min(), data_median_age.max(), data_median_age.mean())
+	housing_median_age = st.sidebar.slider('Housing Median Age', float(data_median_age.min()), float(data_median_age.max()), float(data_median_age.mean()))
 
 	### total rooms - slider with min, max, and mean
 	data_total_rooms = data['total_rooms']
-	total_rooms = st.sidebar.slider('Total Rooms', data_total_rooms.min(), data_total_rooms.max(), data_total_rooms.mean())
+	total_rooms = st.sidebar.slider('Total Rooms', float(data_total_rooms.min()), float(data_total_rooms.max()), float(data_total_rooms.mean()))
 	
 	### median income - slider with min, max, and mean
 	data_median_income = data['median_income']
-	median_income = st.sidebar.slider('Median Income', data_median_income.min(), data_median_income.max(), data_median_income.mean())
+	median_income = st.sidebar.slider('Median Income', float(data_median_income.min()), float(data_median_income.max()), float(data_median_income.mean()))
 
 	features = {'ocean_proximity': ocean_proximity,
 		'latitude': latitude,
@@ -94,7 +94,7 @@ data_load_state.text("")
 
 ### If checkbox is selected, list loaded data.
 if st.checkbox('Show raw data'):
-	st.subheader('Raw data')
+	st.subheader('Raw Data')
 	st.write(data)
 
 
@@ -124,7 +124,7 @@ st.altair_chart(chart)
 
 
 ### Gather user info.
-st.subheader('User Input parameters')
+st.subheader('User Input Parameters')
 user_input = get_user_input(data)
 st.write(user_input)
 

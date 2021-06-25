@@ -19,6 +19,7 @@ def load_data():
 	cleaned_housing_price = raw_housing_price.drop('total_bedrooms', axis = 1)
 	# Drop longitude(-0.0459), population(-0.0246), and households(0.065843)
 	cleaned_housing_price = cleaned_housing_price.drop(['longitude', 'population', 'households'], axis=1)
+	# Convert the measure of median_income from tens of thousands of US Dollars to US Dollar
 	cleaned_housing_price['median_income'] = cleaned_housing_price['median_income']*10000
 	return cleaned_housing_price
 

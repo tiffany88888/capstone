@@ -19,6 +19,7 @@ def load_data():
 	cleaned_housing_price = raw_housing_price.drop('total_bedrooms', axis = 1)
 	# Drop longitude(-0.0459), population(-0.0246), and households(0.065843)
 	cleaned_housing_price = cleaned_housing_price.drop(['longitude', 'population', 'households'], axis=1)
+	cleaned_housing_price['median_income'] = cleaned_housing_price['median_income']*10000
 	return cleaned_housing_price
 
 
@@ -56,21 +57,29 @@ def get_user_input(data):
 	data_ocean_proximity = data['ocean_proximity']
 	ocean_proximity = st.sidebar.selectbox("Select Ocean Proximity", list(set(data_ocean_proximity)))
 
+	st.text("")
+
 	### latitude - slider with min, max, and mean
 	data_latitude = data['latitude']
-	latitude = st.sidebar.slider('Latitude', float(data_latitude.min()), float(data_latitude.max()), float(data_latitude.mean()))
+	latitude = st.sidebar.slider('Latitude - how far west a house is', float(data_latitude.min()), float(data_latitude.max()), float(data_latitude.mean()))
+
+	st.text("")
 
 	### housing_median_age - slider with min, max, and mean
 	data_median_age = data['housing_median_age']
-	housing_median_age = st.sidebar.slider('Housing Median Age', float(data_median_age.min()), float(data_median_age.max()), float(data_median_age.mean()))
+	housing_median_age = st.sidebar.slider('Housing Median Age - median age of a house within a block', float(data_median_age.min()), float(data_median_age.max()), float(data_median_age.mean()))
+
+	st.text("")
 
 	### total rooms - slider with min, max, and mean
 	data_total_rooms = data['total_rooms']
-	total_rooms = st.sidebar.slider('Total Rooms', float(data_total_rooms.min()), float(data_total_rooms.max()), float(data_total_rooms.mean()))
-	
+	total_rooms = st.sidebar.slider('Total Rooms - total number of rooms within a block', float(data_total_rooms.min()), float(data_total_rooms.max()), float(data_total_rooms.mean()))
+
+	st.text("")	
+
 	### median income - slider with min, max, and mean
 	data_median_income = data['median_income']
-	median_income = st.sidebar.slider('Median Income', float(data_median_income.min()), float(data_median_income.max()), float(data_median_income.mean()))
+	median_income = st.sidebar.slider('Median Income - median income for households within a block', float(data_median_income.min()), float(data_median_income.max()), float(data_median_income.mean()))
 
 	features = {'ocean_proximity': ocean_proximity,
 		'latitude': latitude,
